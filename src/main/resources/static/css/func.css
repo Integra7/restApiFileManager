@@ -1,0 +1,12 @@
+img{
+    max-width:100px;
+}
+
+.form-input img {
+    display:none;
+    margin-bottom:30px;
+}
+.form-input input {
+    display:none;
+}
+
