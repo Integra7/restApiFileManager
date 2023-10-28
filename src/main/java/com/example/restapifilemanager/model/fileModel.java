@@ -12,16 +12,16 @@ public class fileModel
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     private String size, fileName,uri;
+    private int userId;
 
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -50,6 +50,14 @@ public class fileModel
     }
 
     public fileModel(){}
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public fileModel(String fileName, String size)
     {
