@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Admin panel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author">
+    <meta name="description">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <-- JS -->
+    <script>
+        //login check
+        let userPrincipal = pageContext.request.userPrincipal.name
+        if(userPrincipal)
+        {
+            const greeting = document.createElement('h2');
+            greeting.textContent = "Hello, " + userPrincipal + " | "
+
+            const logoutLink = document.createElement('a');
+            logoutLink.textContent="Logout";
+            logoutLink.onclick = function(){
+                document.forms['logoutForm'].submit();
+            };
+            document.body.appendChild(greeting);
+            document.body.appendChild(logoutLink);
+        }
+    </script>
+
+<form id="logoutForm" method="post" action="/logout">
+    <input type="hidden" name="_csrf" value="your_csrf_token_here">
+</form>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

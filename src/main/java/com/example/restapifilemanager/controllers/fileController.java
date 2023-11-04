@@ -38,7 +38,7 @@ public ResponseEntity<?>uploadFile(@RequestParam ("file")MultipartFile multipart
         String fileCode = fileUploadModel.saveFile(fileName, multipartFile);
 
 
-        fileModel fileModel = new fileModel(fileName,size);
+        fileModel fileModel = new fileModel(size,fileName);
         fileModel.setUri(fileCode);
         fileModelRepo.save(fileModel);
 

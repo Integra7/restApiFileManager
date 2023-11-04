@@ -5,17 +5,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import org.apache.commons.lang3.RandomStringUtils;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+//@Table(name = "File Model")
 public class fileModel
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+
     private String size, fileName,uri;
-    private int userId;
+
+    ////////////File linked to curr user heap model
+
+    //@ManyToOne
+   // @JoinColumn(name = "currentUserHeapModel_id")
+   // private CurrentUserHeapModel currentUserHeapModel;
+
+
 
     public long getId() {
         return id;
@@ -51,17 +62,16 @@ public class fileModel
 
     public fileModel(){}
 
-    public int getUserId() {
-        return userId;
-    }
+   // public CurrentUserHeapModel getCurrentUserHeapModel() {
+  //      return currentUserHeapModel;
+  //  }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+  //  public void setCurrentUserHeapModel(CurrentUserHeapModel currentUserHeapModel) {
+ //       this.currentUserHeapModel = currentUserHeapModel;
+  //  }
 
-    public fileModel(String fileName, String size)
-    {
-        this.fileName = fileName;
+    public fileModel(String size, String fileName) {
         this.size = size;
+        this.fileName = fileName;
     }
 }
