@@ -15,8 +15,8 @@ public class RoleModel
     @Column(name = "name")
     private String name;
 
-    //@ManyToMany(mappedBy = "roles")
-    //private Set<UserModel> users;
+    @ManyToMany(mappedBy = "roles")
+    private Set<UserModel> users;
 
     public RoleModel() {
     }
@@ -37,20 +37,20 @@ public class RoleModel
         this.name = name;
     }
 
-    //public Set<UserModel> getUsers() {
-    //    return users;
-    //}
+    public Set<UserModel> getUsers() {
+        return users;
+    }
 
-    //public void setUsers(Set<UserModel> users) {
-    //    this.users = users;
-    //}
+    public void setUsers(Set<UserModel> users) {
+       this.users = users;
+    }
 
     @Override
     public String toString() {
         return "RoleModel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                //-", users=" + users +
+                ", users=" + users +
                 '}';
     }
 }

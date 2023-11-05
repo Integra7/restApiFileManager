@@ -19,18 +19,21 @@ public class UserModel
 
     @Transient
     private String confirmPassword;
-/*
+
+    @Column(name="roles")
     @ManyToMany
     @JoinTable(name="user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleModel> roles;
+
+
 
     // связь энтити юзера и хипа
     //@OneToOne
     //private UserHeapModel userHeapModel;
     ////////////////////////////
 
-*/
+
     public long getId() {
         return id;
     }
@@ -62,7 +65,7 @@ public class UserModel
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
-/*
+
     public Set<RoleModel> getRoles() {
         return roles;
     }
@@ -70,7 +73,7 @@ public class UserModel
     public void setRoles(Set<RoleModel> roles) {
         this.roles = roles;
     }
-
+/*
     public UserHeapModel getUserHeapModel() {
        return userHeapModel;
     }

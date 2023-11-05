@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-//@Table(name = "File Model")
+@Table(name = "Files")
 public class fileModel
 {
     @Id
@@ -22,9 +22,9 @@ public class fileModel
 
     ////////////File linked to curr user heap model
 
-    //@ManyToOne
-   // @JoinColumn(name = "currentUserHeapModel_id")
-   // private CurrentUserHeapModel currentUserHeapModel;
+    @ManyToOne
+    @JoinColumn(name = "user")
+    private UserModel user;
 
 
 
@@ -58,6 +58,14 @@ public class fileModel
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 
     public fileModel(){}

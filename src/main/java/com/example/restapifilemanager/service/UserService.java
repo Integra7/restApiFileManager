@@ -6,4 +6,5 @@ public interface UserService
 {
     void save(UserModel userModel);
     UserModel findByUserName(String username);
+    UserModel findByUserNameAndPassword(String username, String password);
 }

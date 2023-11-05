@@ -18,18 +18,19 @@
 
 <body>
 <div class="container">
-    <form method="GET" action="/login">
+    <form method="post" action="/login">
         <h2 class="form-heading">Log in</h2>
 
         <div class="form-group">
             <span></span>
             <input name="user_name" type="text" class="form-control" placeholder="Username" autofocus="true"/>
-            <input name="pass_word" type="password" class="form-control" placeholder="Password"/>
+            <input name="pass_word" type="password" class="form-control" placeholder="Password" />
             <span></span>
 
             <button type="submit">Log In</button>
             <h4 class="text-center"><a href="/register">Create an account</a></h4>
         </div>
+        <p th:text="${error}"></p>
     </form>
 </div>
 

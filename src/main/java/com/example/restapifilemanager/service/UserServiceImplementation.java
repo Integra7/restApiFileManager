@@ -13,16 +13,10 @@ public class UserServiceImplementation implements UserService
     @Autowired
     private UserModelRepo userModelRepo;
 
-   // @Autowired
-    //private RoleDao roleDao;
-
     @Override
     public void save(UserModel userModel)
     {
         userModel.setPassWord(userModel.getPassWord());
-        //Set<RoleModel> roles = new HashSet<>();
-        //roles.add(roleDao.getOne(1L));
-        //userModel.setRoles(roles);
         userModelRepo.save(userModel);
     }
     @Override
@@ -30,4 +24,19 @@ public class UserServiceImplementation implements UserService
     {
         return userModelRepo.findByUserName(username);
     }
+    @Override
+
+    public UserModel findByUserNameAndPassword(String username, String password)
+    {
+        UserModel checked = findByUserName(username);
+        if (password == checked.getPassWord())
+            return checked;
+        return null;
+    }
+
+    public UserModel authenticate(String username, String password)
+    {
+        return userModelRepo.findByUserNameAndPassWord(username,password);
+    }
+
 }
