@@ -3,27 +3,36 @@
 <head>
     <title>File Uploader</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/func.css">
 </head>
 <body>
 
-<link rel="stylesheet" href="css/func.css">
-<script src="js/func.js"></script>
-
 <header th:insert="blocks/header :: header"></header>
-<h1>Welcome, <span th:text="${user_name}"></span>!</h1>
-<div class="container mt-5">
-    <div th:each="el: ${fileModels}" class="alert alert-dark mt-2">
-        <h3  th:text="${el.fileName}"/>
-        <h3  th:text="${el.size}"/>
-        <img th:src="@{'files-upload/'+${el.uri}+${el.fileName}}"/>
-        <form method="GET" action="/dl/" enctype="multipart/form-data">
-            <a  th:href="'/dl/' + ${el.uri}" class="btn btn-warning">Download</a>
-        </form>
+<hr class="custom-line">
+
+    <div th:each="el: ${fileModels}" class="image-container" onchange="showPreview();">
+
+        <div id="eventDiv" class="image-info">
+            <div class="lefts">
+                <span id="span" th:text="${el.fileName}"/>
+                <span id="spanWithImagePath" th:text="'files-upload/'+ ${el.uri}+${el.fileName}"/>
+
+                <div id="imageDiv">
+                    <img id="popupImage" src="" alt="Popup Image">
+                </div>
+
+                <span th:text="${el.size}"/>
+        </div>
+  <!--      <img class="preview-block" th:src="@{'files-upload/' +${el.uri}+${el.fileName}}" alt="Error"/> -->
+            <form method="GET" action="/dl/" enctype="multipart/form-data">
+                <a  th:href="'/dl/' + ${el.uri}" class="fileDownload">Download</a>
+            </form>
+        </div>
+
     </div>
-</div>
 
 
+<script src="js/test.js"></script>
 </body>
 </html>

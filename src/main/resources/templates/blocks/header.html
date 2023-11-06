@@ -1,16 +1,11 @@
---<div th:fragment="header">
-    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-        <style>
-            header {
-                font-family: Garamond, sans-serif;
-            }
-        </style>
-
-        <div class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-            <a class="fs-4 me-3 py-2 nav-link px-2 text-secondary" href="/">Home</a>
-            <a class="fs-4 me-3 py-2 nav-link px-2 text-secondary" href="/upload">Upload file</a>
-            <a class="fs-4 me-3 py-2 nav-link px-2 text-secondary" href="/login">Login</a>
-            <a class="fs-4 me-3 py-2 nav-link px-2 text-secondary" href="/register">Register</a>
+<div th:fragment="header" class="header">
+    <link rel="stylesheet" href="css/header.css">
+    <div class="button-container">
+        <h3 th:if="${user_name!=null}"><span th:text="${user_name}"></span></h3>
+            <a class="redirect-button" href="/">Home</a>
+            <a class="redirect-button" href="/upload">Upload file</a>
+            <a class="redirect-button" href="/login">Login</a>
+            <a class="redirect-button" href="/register">Register</a>
         </div>
-    </div>
+
 </div>

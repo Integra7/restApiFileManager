@@ -6,3 +6,9 @@ function showPreview(event){
         preview.style.display = "block";
     }
 }
+
+function refresh(event)
+{
+    let element = document.getElementById("img");
+    element.reload();
+}

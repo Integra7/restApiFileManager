@@ -1,0 +1,57 @@
+.button-container {
+    position: relative;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 60px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    background-color: #333333;
+    text-align: right;
+}
+
+.button-container a {
+    display: inline-block;
+    margin-right: 10px; /* Опционально: добавляет отступ между ссылками */
+}
+.button-container h3
+{
+
+    left:10px;
+    top:10px;
+    position: absolute;
+    color:white;
+}
+.button-container h3:first-letter
+{
+    color: #ff8700;
+}
+
+/* Опциональные стили для ссылок-кнопок */
+
+a {
+    font-weight: 700;
+    justify-content: center;
+    display: flex;
+    padding: 10px 20px;
+    background-color: #7a956b;
+    color: #ffffff;
+    border: none;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 0 5px 0 #161b13;
+    transition: background-color 0.5s ease 0s;
+    letter-spacing: 2px;
+    text-decoration: none;
+    margin: 20px;
+}
+
+a:hover {
+    background-color: #4f6146;
+    color: #161b13;
+    text-decoration: none;
+}
+.a:active
+{
+    top: 3px;
+    box-shadow: 0 2px 0 #161b13;
+}
