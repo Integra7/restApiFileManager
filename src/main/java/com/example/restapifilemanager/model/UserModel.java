@@ -12,9 +12,7 @@ public class UserModel
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-  //@Column(unique = true)
     private String userName;
- //  @Column(name="password")
     private String passWord;
 
     @Transient
@@ -25,13 +23,6 @@ public class UserModel
     @JoinTable(name="user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleModel> roles;
-
-
-
-    // связь энтити юзера и хипа
-    //@OneToOne
-    //private UserHeapModel userHeapModel;
-    ////////////////////////////
 
 
     public long getId() {

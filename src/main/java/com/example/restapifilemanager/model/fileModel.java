@@ -17,16 +17,11 @@ public class fileModel
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-
     private String size, fileName,uri;
-
-    ////////////File linked to curr user heap model
 
     @ManyToOne
     @JoinColumn(name = "user")
     private UserModel user;
-
-
 
     public long getId() {
         return id;
@@ -69,14 +64,6 @@ public class fileModel
     }
 
     public fileModel(){}
-
-   // public CurrentUserHeapModel getCurrentUserHeapModel() {
-  //      return currentUserHeapModel;
-  //  }
-
-  //  public void setCurrentUserHeapModel(CurrentUserHeapModel currentUserHeapModel) {
- //       this.currentUserHeapModel = currentUserHeapModel;
-  //  }
 
     public fileModel(String size, String fileName) {
         this.size = size;

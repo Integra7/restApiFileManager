@@ -1,61 +1,59 @@
 package com.example.restapifilemanager.controllers;
-
 import com.example.restapifilemanager.model.UserModel;
 import com.example.restapifilemanager.model.fileModel;
 import com.example.restapifilemanager.repo.fileModelRepo;
-import com.example.restapifilemanager.model.fileUploadModel;
-import org.apache.tomcat.util.http.fileupload.FileUpload;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.net.URI;
 import java.text.DecimalFormat;
-
+import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 @Controller
 @SessionAttributes("user")
-public class fileController
-{
+public class fileController {
     @Autowired
     private fileModelRepo fileModelRepo;
 
     @PostMapping("/upload")
-    public String uploadFile(@RequestParam ("file")MultipartFile multipartFile, Model model) throws IOException
-    {
-
+    public String handleFileUpload(@RequestParam("file") MultipartFile file, Model model) throws IOException{
         UserModel user = (UserModel) model.getAttribute("user");
-        final DecimalFormat decfor = new DecimalFormat("0.00");
-        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
-        Double sizeD = (double)multipartFile.getSize()/1024/1024;
+        if (!file.isEmpty())  {
+            try {
+                String fileCode = RandomStringUtils.randomAlphanumeric(10);
+                String uploadDir = "D:\\restApiFileManager\\src\\main\\resources\\static\\files-upload";
+                File uploadDirFile = new File(uploadDir);
 
-        String size = String.valueOf(decfor.format(sizeD)) + "MB";
-        String fileCode = fileUploadModel.saveFile(fileName, multipartFile);
+                if (!uploadDirFile.exists()) {
+                    uploadDirFile.mkdirs();
+                }
+
+                String fileName = file.getOriginalFilename();
+                String filePath = uploadDir + File.separator +fileCode +fileName;
+
+                file.transferTo(new File(filePath));
 
 
-        fileModel fileModel = new fileModel(size,fileName);
-        fileModel.setUri(fileCode);
-        if(user!=null)
-        {
-            fileModel.setUser(user);
+                Double sizeD = (double)file.getSize()/1024/1024;
+                final DecimalFormat decfor = new DecimalFormat("0.00");
+                String size = String.valueOf(decfor.format(sizeD)) + "MB";
+
+                fileModel fileModel = new fileModel(size,fileName);
+                fileModel.setUri(fileCode);
+                if(user!=null)
+                {
+                    fileModel.setUser(user);
+                }
+                fileModelRepo.save(fileModel);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        fileModelRepo.save(fileModel);
-
         return "redirect:/home";
-
-
     }
 }
+

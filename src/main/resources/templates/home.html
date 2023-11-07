@@ -11,12 +11,12 @@
 <header th:insert="blocks/header :: header"></header>
 <hr class="custom-line">
 
-    <div th:each="el: ${fileModels}" class="image-container" onchange="showPreview();">
+    <div th:each="el: ${fileModels}" class="image-container">
 
-        <div id="eventDiv" class="image-info">
+        <div class="image-info">
             <div class="lefts">
                 <span id="span" th:text="${el.fileName}"/>
-                <span id="spanWithImagePath" th:text="'files-upload/'+ ${el.uri}+${el.fileName}"/>
+                <span hidden="hidden" id="spanWithImagePath" th:text="'files-upload/'+ ${el.uri}+${el.fileName}"/>
 
                 <div id="imageDiv">
                     <img id="popupImage" src="" alt="Popup Image">
@@ -24,7 +24,6 @@
 
                 <span th:text="${el.size}"/>
         </div>
-  <!--      <img class="preview-block" th:src="@{'files-upload/' +${el.uri}+${el.fileName}}" alt="Error"/> -->
             <form method="GET" action="/dl/" enctype="multipart/form-data">
                 <a  th:href="'/dl/' + ${el.uri}" class="fileDownload">Download</a>
             </form>
