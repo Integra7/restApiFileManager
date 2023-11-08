@@ -55,7 +55,7 @@ public class RegistrationController
         startRole.add(roleRepo.findRoleModelByName("ROLE_USER"));
         user.setRoles(startRole);
     userModelRepo.save(user);
-    return "redirect:/home";}
+    return "redirect:/login";}
 }
 
 }

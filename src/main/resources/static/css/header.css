@@ -1,3 +1,10 @@
+.custom-line {
+    height: 2px;
+    background-color: #868285;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 .button-container {
     position: relative;
     top: 0px;

@@ -1,25 +1,9 @@
-img{
-    max-width:100px;
-}
-
-.form-input img {
-    display:none;
-    margin-bottom:30px;
-}
-.form-input input {
-    display:none;
-}
-
-.custom-line {
-    height: 2px; /* Толщина линии (высота) */
-    background-color: #868285;
-    border: none; /* Убираем стандартный бордер */
-    margin-top: 20px;
-    margin-bottom: 20px;
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block
 }
 body
 {
-    padding: 0px;
+    margin: 0;
     width: 100%;
     height: 100%;
     line-height: 1;
@@ -85,4 +69,52 @@ body
 #popupImage {
     max-width: 300px;
     max-height: 300px;
+}
+
+#msg
+{
+    font-size: 18px;
+    display: block;
+    margin: 0px 0px 10px 0px;
+    color: white;
+}
+
+.custom-file-input{
+    color: transparent;
+}
+
+.custom-file-input::file-selector-button {
+    border: 2px solid #161b13;
+    background-color: #7a956b;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    border-radius: 20px;
+    margin: 10px;
+    transition: background-color 0.5s ease 0s;
+}
+
+.custom-file-input::file-selector-button:hover {
+    background-color: #4f6146;
+    cursor: pointer;
+    border: 2px solid #ff8700;
+}
+
+.submitButton
+{
+    border: 2px solid #161b13;
+    background-color: #7a956b;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+    color:white;
+    margin: 10px;
+}
+
+.form_label
+{
+    font-size: 18px;
+    color: white;
+    display: block;
+    margin: 0px 0px 10px 0px;
 }
