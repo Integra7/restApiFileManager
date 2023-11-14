@@ -1,11 +1,11 @@
-<div th:fragment="header" class="header">
+<div th:fragment="header" class="header lock-padding">
     <link rel="stylesheet" href="css/header.css">
     <div class="button-container">
         <h3 th:if="${user_name!=null}"><span th:text="${user_name}"></span></h3>
-            <a class="redirect-button" href="/">Home</a>
-            <a class="redirect-button" href="/upload">Upload file</a>
-            <a class="redirect-button" href="/login">Login</a>
-            <a class="redirect-button" href="/register">Register</a>
+            <a class="link-button" href="/">Home</a>
+            <a class="link-button popup-link" href="#upload">Upload file</a>
+            <a class="link-button popup-link" href="#login">Login</a>
+            <a class="link-button popup-link" href="#registration">Register</a>
         </div>
     <hr class="custom-line">
 </div>

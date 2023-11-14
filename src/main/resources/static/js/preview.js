@@ -8,7 +8,28 @@ document.addEventListener('DOMContentLoaded', function() {
             let imageDiv = div.querySelector('#imageDiv');
             let popupImage = div.querySelector('#popupImage');
 
+            //нужно чтобы элемент  был отрисован, с динамическими не получается(
+            let size = div.querySelector('#sizetext');
             popupImage.setAttribute("src", imgPath);
+
+            let divRect = size.getBoundingClientRect();
+            let screenHeight = window.innerHeight;
+
+            let imageTopPosition = divRect.top;
+
+            //top border check
+            if (imageTopPosition < window.scrollY) {
+                imageDiv.style.top = window.scrollY + 'px';
+            }
+
+            // bottom border check
+            //300 - maxHeight (CSS)
+            if (imageTopPosition + 300 > screenHeight) {
+                imageTopPosition = screenHeight - 300;
+                imageDiv.style.top = imageTopPosition + 'px';
+            }
+
+
             imageDiv.style.display = 'block';
         });
 

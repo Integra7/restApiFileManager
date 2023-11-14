@@ -1,4 +1,4 @@
-body
+/*body
 {
     width: 100%;
     height: 100%;
@@ -7,22 +7,11 @@ body
     background-color: #333333;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
+
+
 .form_body
 {
     position: relative;
-}
-.form_body::after
-{
-    content:"";
-    position: absolute;
-    top:0;
-    left:0;
-    width: 100%;
-    height: 100%;
-    background: rgba(51,51,51,0.8) center/50px no-repeat;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.5s ease 0s;
 }
 
 .form
@@ -95,3 +84,5 @@ body
     text-shadow: 1px 0 20px red;
 
 }
+
+ */

@@ -3,34 +3,156 @@
 <head>
     <title>File Uploader</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-    <link rel="stylesheet" href="css/func.css">
 </head>
 <body>
 
 <header th:insert="blocks/header :: header"></header>
+<div class="wrapper">
 
     <div th:each="el: ${fileModels}" class="image-container">
 
         <div class="image-info">
             <div class="lefts">
                 <span id="span" th:text="${el.fileName}"/>
-                <span hidden="hidden" id="spanWithImagePath" th:text="'files-upload/'+ ${el.uri}+${el.fileName}"/>
+                <span hidden="hidden" id="spanWithImagePath" th:text="'files-upload/'+${el.uri}+${el.fileName}"/>
+                <span id="sizetext" th:text="${el.size}"/>
 
                 <div id="imageDiv">
                     <img id="popupImage" src="" alt="Popup Image">
                 </div>
 
-                <span th:text="${el.size}"/>
         </div>
             <form method="GET" action="/dl/" enctype="multipart/form-data">
-                <a  th:href="'/dl/' + ${el.uri}" class="fileDownload">Download</a>
+                <a  th:href="'/dl/' + ${el.uri}" class="fileDownload link-button">Download</a>
             </form>
         </div>
 
     </div>
 
 
-<script src="js/test.js"></script>
+<div id="upload" class="popup">
+        <div class="popup__body">
+            <div class="popup__content">
+                <div class="welcome"> <p>Choose a file.</p></div>
+                <form method="POST" action="/upload" enctype="multipart/form-data" onsubmit="return validateUpload()">
+                        <!--Preview-->
+                    <div class="preview_wrapper">
+                        <img id="file-ip-1-preview">
+                    </div>
+                        <!--Choose file butt-->
+                    <div class="input__wrapper">
+                        <input class="input input__file" type="file" id="file" name="file" required onchange="showPreview(event);">
+                        <label for="file" class="input__file-button">
+                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="pics/icon.svg" alt="Выбрать файл" width="25"></span>
+                            <span class="input__file-button-text">Choose file</span>
+                        </label>
+                        <div class="has-error" id="no-file-error"></div>
+                    </div>
+                    <br>
+                    <!-- recaptcha-->
+                    <center>
+                    <div class="g-recaptcha" data-sitekey="6LdJlA4pAAAAAA9jZ1CW8cxnis59I5lDGfh_KxfN"></div>
+                    <div class="has-error" id="upload-recaptcha-error"></div>
+                    </center>
+                    <!-- recaptcha-->
+                        <!--Submit butt-->
+                    <div class="button__wrapper">
+                        <button class="button__wrapper-submitButton" type="submit">Upload file</button>
+                    </div>
+                </form>
+                <a href="" class="popup_close close-popup">X</a>
+
+
+            </div>
+        </div>
+    </div>
+
+<div id="registration" class="popup">
+    <div class="popup__body">
+        <div class="popup__content">
+            <div class="welcome"> <p>Sign up</p>  </div>
+                <form class="form_body" id="registrationForm" method="POST" action="/registration" onsubmit="return validateForm()">
+                    <div class="form_item">
+                        <label for="user_name" class="form_label">Name:</label>
+                        <input type="text" id="user_name" name="userName" placeholder="Enter username" required class="form_input"><br><br>
+                        <div class="has-error" id="username-error"></div>
+                    </div>
+                    <div class="form_item">
+                        <label for="pass_word" class = "form_label">Password:</label>
+                        <input type="password" id="pass_word" name="passWord" placeholder="Enter password" required class="form_input"><br><br>
+                        <div class="has-error" id="password-error"></div>
+                    </div>
+                    <div class="form_item">
+                        <label for="confirmPassword" class = "form_label">Confirm Password:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required class="form_input"><br><br>
+                        <div class="has-error" id="confirmPassword-error"></div>
+                    </div>
+                    <!-- recaptcha-->
+                    <center>
+                    <div class="g-recaptcha" data-sitekey="6LdJlA4pAAAAAA9jZ1CW8cxnis59I5lDGfh_KxfN"></div>
+                    <div class="has-error" id="reg-recaptcha-error"></div>
+                    </center>
+                    <!-- recaptcha-->
+                    <div class="form_input">
+                        <button type="submit" id="submit" class="form_submit">Register</button>
+                    </div>
+                </form>
+                <a href="" class="popup_close close-popup">X</a>
+        </div>
+    </div>
+</div>
+
+<div id="login" class="popup">
+   <div class="popup__body">
+       <div class="popup__content">
+           <div class="welcome"> <p>Sign in</p>  </div>
+
+                    <form class="form_body" method="post" action="/login" onsubmit="return validateLogin()">
+
+                        <div class="form_item">
+                            <label for="userName" class="form_label">Name:</label>
+                            <input id="userName" name="user_name" type="text" class="form_input" placeholder="Username" required/>
+                        </div>
+
+                        <div class="form_item">
+                            <label for="passWord" class="form_label">Password:</label>
+                            <input id="passWord" name="pass_word" type="password" class="form_input" placeholder="Password" required/>
+                        </div>
+                        <br>
+                        <div class="has-error" id="loginError"></div>
+                       <!-- <div class="has-error" th:text="${error}"></div> -->
+                        <!-- recaptcha-->
+                        <center>
+                        <div class="g-recaptcha" data-sitekey="6LdJlA4pAAAAAA9jZ1CW8cxnis59I5lDGfh_KxfN"></div>
+                        <div class="has-error" id="login-recaptcha-error"></div>
+                        </center>
+                        <!-- recaptcha-->
+                        <div class="form_input">
+                            <button id="loginsubmitbutton" type="submit" class="form_submit">Log In</button>
+                        </div>
+                        <br>
+                            <div class="form_input">
+                            <a class="form_submit popup-link" href="#registration">Create an account</a>
+                        </div>
+
+                    </form>
+           <a href="" class="popup_close close-popup">X</a>
+       </div>
+   </div>
+</div>
+
+<!--wrapper eof -->
+</div>
+<!--wrapper eof -->
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="js/preview.js"></script>
+<script src="js/func.js"></script>
+<script src="js/popup.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/validator.js"></script>
+
 </body>
 </html>
